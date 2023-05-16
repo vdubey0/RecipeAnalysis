@@ -51,6 +51,6 @@ Here is the first 5 rows of our resulting dataframe:
 
 This is the distribution of the `average rating` column:
 <center><iframe src="assets/average_rating_hist.html" width=600 height=400 frameBorder=0></iframe></center>
-It is evident that the distribution is heavily skewed left, meaning that more ratings
+<center> It is evident that the distribution is heavily skewed left, meaning that more ratings
 tend to be higher than lower. Either most of the recipes were really good or the people
-who rated them were feeling nice.
+who rated them were feeling nice. </center>
