@@ -11,13 +11,13 @@ In order to get started, we merged these datasets into one big dataset with 234,
 rows that contained information about each recipe.
 
 Here is a more detailed explanation of the most relevant columns in the merged dataset:
--   *`name`* : name of the recipe
--   *`minutes`* : amount of minutes required to make the recipe
--   *`nutrition`* : nutrition facts in the form [calories (#), total fat (PDV - percent daily value), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]
--   *`n_steps`* : number of steps in the recipe
--   *`steps`* : list of steps in the recipe
--   *`rating`* : rating given to the recipe by a user
--   *`id`* : recipe ID
+-   `name` : name of the recipe
+-   `minutes` : amount of minutes required to make the recipe
+-   `nutrition` : nutrition facts in the form [calories (#), total fat (PDV - percent daily value), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]
+-   `n_steps` : number of steps in the recipe
+-   `steps` : list of steps in the recipe
+-   `rating` : rating given to the recipe by a user
+-   `id` : recipe ID
 
 A question that we explored throughout this project was *"Do recipes with sugar as
 an ingredient typically have more calories than those without?"*
@@ -27,7 +27,7 @@ an ingredient typically have more calories than those without?"*
 ## Cleaning and EDA (Exploratory Data Analysis)
 As mentioned before, we started by merging the two datasets. These are the next steps we followed:
 1. We filled all the ratings that had a value of 0 with `np.nan`. We did this because the rating
-scale was from 1-5, so a rating of 0 is not possible. Thus, we opted that since 0 can still have
+scale was from 1-5, so a rating of `0` is not possible. Thus, we opted that since 0 can still have
 meaning in terms of a rating (aside from the scale) we should replace it.
 2. Since we saw that recipes had ratings/reviews from different users, we decided to
 compute the average rating per recipe. We then added this information to our dataframe so
