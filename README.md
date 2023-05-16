@@ -36,5 +36,5 @@ since the only differing information were the reviews given by each user and we 
 using that info.
 3. We then dropped all unnecessary columns. These were `['contributor_id', 'submitted', 'tags', 'steps', 'description', 'user_id', 'recipe_id', 'date', 'review', 'rating_x']`. We were able to look at these columns and figure out that they would not have
 any significance in our future analyses.
-4. In order to prepare for research question, we extracted the calories from the 
+4. In order to prepare for research question, we extracted the calorie value for each recipe from the 
 `nutrition` column.
