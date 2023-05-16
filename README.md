@@ -1,3 +1,4 @@
-# RecipeAnalysis
-Analyzing characteristics for recipes as apart of DSC80 UCSD
-Hello World
+# Recipe Analysis
+Analyzing and exploring a dataset containing information about different recipies
+
+
