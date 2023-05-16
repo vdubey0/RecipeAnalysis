@@ -50,4 +50,4 @@ Here is the first 5 rows of our resulting dataframe:
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
 This is the distribution of the average rating column:
-<iframe src="assets/file-name.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/average_rating_hist.html" width=800 height=600 frameBorder=0></iframe>
