@@ -50,7 +50,7 @@ Here is the first 5 rows of our resulting dataframe:
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
 This is the distribution of the `average rating` column:
-<center><iframe src="assets/average_rating_hist.html" width=600 height=400 frameBorder=0></iframe></center>
-<center> It is evident that the distribution is heavily skewed left, meaning that more ratings
+<center><iframe src="assets/average_rating_hist.html" width=700 height=500 frameBorder=0></iframe></center>
+<center> <i> It is evident that the distribution is heavily skewed left, meaning that more ratings
 tend to be higher than lower. Either most of the recipes were really good or the people
-who rated them were feeling nice. </center>
+who rated them were feeling nice. </i> </center>
