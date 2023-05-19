@@ -40,8 +40,13 @@ Some recipes had calorie counts that were in the 20,000's and some recipes were 
 days. We decided to filter out these recipes because a recipe having that many calories and
 taking that long is unfeasible and is probably due to input errors in the data gathering
 process. We did not want these values to skew our analysis because we will be working with
-means in our statistical analysis and we know that outliers can heavily skew such a measure.
-After this cleaning process, we were left with 81586 (around 97% of the data from step 2).
+means in our statistical analysis and we know that outliers can heavily skew such a measure. We
+figured to set a calorie limit of 2350 (the mean of the 2200 and 2500 calories recommended for
+women and men respectively). We reasoned the daily calorie limit because we thought a day to consist
+of 3 meals and a couple snacks so ~4 meals. A recipe that makes more than 4 meals at once was not as
+interesting to us because we wanted to work with recipes that we could encounter in our actual lives.
+As for minutes, we set a minute limit of 2880 which is 1.5 days. After this cleaning process, we were left with 82472 
+(around 98.5% of the data from step 2).
 
 Here is the first 5 rows of our resulting dataframe (note that for visual purposes, the ingredients column is shortened with ellipses):
 
@@ -53,10 +58,14 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 | paula deen s caramel apple cheesecake | 275030 |        45 |        11 | ['apple pie filling',...,'pecans'] |               9 |                5 |      577.7 |
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
-This is the distribution of the `average rating` column:
-<center><iframe src="assets/average_rating_hist.html" width=650 height=500 frameBorder=0></iframe></center>
-<center> <em> It is evident that the distribution is heavily skewed left, meaning that more ratings
-tend to be higher than lower. Either most of the recipes were really good or the people
-who rated them were feeling nice. </em> </center>
+This is the distribution of the `calorie` column:
+<center><iframe src="assets/'calories_hist.html'" width=650 height=500 frameBorder=0></iframe></center>
+<center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
+with less calories than there are with a lot. Having high amounts of calories in a recipe normally
+has a negative connotation in that it is unhealthy. It makes sense for people to only post
+recipes in which the calories are less so others actually want to make the dish and feel reasonably healthy
+in doing so. </em> </center>
+
+
 
 
