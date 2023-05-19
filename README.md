@@ -21,6 +21,7 @@ A question that we explored throughout this project was *"What factors influence
 ---
 
 ## Cleaning and EDA (Exploratory Data Analysis)
+#### Cleaning
 As mentioned before, we started by merging the two datasets. These are the next steps we followed:
 1. We filled all the ratings that had a value of 0 with `np.nan`. We did this because the rating
 scale was from 1-5, so a rating of `0` is not possible. Thus, we opted that since 0 can still have
@@ -61,18 +62,22 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 
 <br>
 
+#### Variate Analysis of Calories
+
 This is the distribution of the `calorie` column:
 <center><iframe src="assets/calories_hist.html" width=650 height=500 frameBorder=0></iframe></center>
-<font size = '1'> <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
+This distribution is evidently skewed right. We can see that there a lot more reciples
 with less calories than there are with a lot. Having high amounts of calories in a recipe normally
 has a negative connotation in that it is unhealthy. It makes sense for people to only post
 recipes in which the calories are less so others actually want to make the dish and feel reasonably healthy
-in doing so. </em> </center> </font>
+in doing so.
 
 <br>
 
 Next, we analyzed dependence of the `calorie` column on the `Average Rating` columns. Since `Average Rating` is
 a categorical variable (more specifically, ordinal), we chose to display the graph with `calorie` seperated
 by each value in `Average Rating`, as below (scroll left and right):
-<center><iframe src="assets/calories_by_rating.html" width=800 height=500 frameBorder=0></iframe></center>
+<center><iframe src="assets/calories_by_rating.html" width=650 height=500 frameBorder=0></iframe></center>
+<font size = '2'> <center> <em> How to Read: if you hover over the blue plot (rating = 1), on 250-349 calories, you will see 16.55%. This means
+that for recipes that received 1 star, 16 percent of them had 250-349 calories. </em> </center> </font>
 
