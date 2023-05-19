@@ -16,7 +16,8 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 -   `rating` : rating given to the recipe by a user
 -   `id` : recipe ID
 
-A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (SUGAR, ratings, etc)?"* <br>
+A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (SUGAR, ratings, etc)?"* 
+<br>
 We explored *"Do recipes with sugar tend to have more calories than recipes without sugar?"*  in the HYPOTHESIS TEST portion.
 
 ---
