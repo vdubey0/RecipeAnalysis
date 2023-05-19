@@ -67,6 +67,6 @@ in doing so. </em> </center> </font>
 
 Next, we analyzed dependence of the `calorie` column on the `Average Rating` columns. Since `Average Rating` is
 a categorical variable (more specifically, ordinal), we chose to display the graph with `calorie` seperated
-by each value in `Average Rating`, as below:
-<center><iframe src="assets/calories_by_rating.html" width=650 height=500 frameBorder=0></iframe></center>
+by each value in `Average Rating`, as below (scroll left and right):
+<center><iframe src="assets/calories_by_rating.html" width=800 height=500 frameBorder=0></iframe></center>
 
