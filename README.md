@@ -59,7 +59,7 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
 This is the distribution of the `calorie` column:
-<center><iframe src="assets/'calories_hist.html'" width=650 height=500 frameBorder=0></iframe></center>
+<center><iframe src="assets/'calories_hist.html" width=650 height=500 frameBorder=0></iframe></center>
 <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
 with less calories than there are with a lot. Having high amounts of calories in a recipe normally
 has a negative connotation in that it is unhealthy. It makes sense for people to only post
