@@ -30,13 +30,20 @@ meaning in terms of a rating (aside from the scale) we should replace it.
 compute the average rating per recipe. We then added this information to our dataframe so
 that each recipe had an average rating. We also dropped all duplicate recipes in our dataset
 since the only differing information were the reviews given by each user and we would not be 
-using that info.
-3. We then dropped all unnecessary columns. These were `['contributor_id', 'submitted', 'tags', 'steps', 'description', 'user_id', 'recipe_id', 'date', 'review', 'rating_x']`. We were able to look at these columns and figure out that they would not have
+using that info. This left us with 83782 rows.
+3. We then dropped all unnecessary columns. These were `['contributor_id', 'submitted', 'tags', 'steps', 'description', 'user_id', 'recipe_id', 'date', 'review', 'rating_x', 'nutrition']`. We were able to look at these columns and figure out that they would not have
 any significance in our future analyses.
 4. In order to prepare for research question, we extracted the calorie value for each recipe from the 
 `nutrition` column.
+5. We then noticed that there were pretty large outliers in the `minutes` and `calorie` columns.
+Some recipes had calorie counts that were in the 20,000's and some recipes were taking almost 300
+days. We decided to filter out these recipes because a recipe having that many calories and
+taking that long is unfeasible and is probably due to input errors in the data gathering
+process. We did not want these values to skew our analysis because we will be working with
+means in our statistical analysis and we know that outliers can heavily skew such a measure.
+After this cleaning process, we were left with 81586 (around 97% of the data from step 2).
 
-Here is the first 5 rows of our resulting dataframe:
+Here is the first 5 rows of our resulting dataframe (note that for visual purposes, the ingredients column is shortened with ellipses):
 
 | name                                  |     id |   minutes |   n_steps | ingredients                                                                                                                            |   n_ingredients |   Average Rating |   calories |
 |:--------------------------------------|-------:|----------:|----------:|:---------------------------------------------------------------------------------------------------------------------------------------|----------------:|-----------------:|-----------:|
@@ -47,7 +54,9 @@ Here is the first 5 rows of our resulting dataframe:
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
 This is the distribution of the `average rating` column:
-<center><iframe src="assets/average_rating_hist.html" width=600 height=500 frameBorder=0></iframe></center>
+<center><iframe src="assets/average_rating_hist.html" width=650 height=500 frameBorder=0></iframe></center>
 <center> <em> It is evident that the distribution is heavily skewed left, meaning that more ratings
 tend to be higher than lower. Either most of the recipes were really good or the people
 who rated them were feeling nice. </em> </center>
+
+
