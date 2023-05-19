@@ -16,7 +16,7 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 -   `rating` : rating given to the recipe by a user
 -   `id` : recipe ID
 
-A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (ratings, sweetness, ingredients, etc)"*
+A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (SUGAR, ratings, etc)?"*
 
 ---
 
@@ -102,6 +102,7 @@ or not the recipe contained sugar. We then grouped by this column and aggregated
 |:-----------------|----------:|----------:|----------------:|-----------------:|-----------:|
 | False            |   65.5412 |   9.54549 |         8.9805  |          4.63006 |    377.583 |
 | True             |   75.5849 |  11.1645  |         9.69367 |          4.6149  |    382.39  |
+
 <font size = '2'> <center> <em> Note that the id columns was dropped (even though it is numerical) due its mean being meaningless </em> </center> </font>
 
 <br>
@@ -130,7 +131,7 @@ This is the result of our permutation test where the red line is the observed te
 
 <center><iframe src="assets/mar.html" width=650 height=500 frameBorder=0></iframe></center>
 
-As evident from above,our p-value under the null hypothesis was 0, meaning that it was highly unlikely that we see our observed test statistic under the null hypothesis. For this reason, we can reject the null hypothesis and conclude that the missingness of the data in `Average Rating` is has dependency on the `calories` column.
+As evident from above, our p-value under the null hypothesis was 0, meaning that it was highly unlikely that we see our observed test statistic under the null hypothesis. For this reason, we can reject the null hypothesis and conclude that the missingness of the data in `Average Rating` is has dependency on the `calories` column.
 
 <br>
 
@@ -143,11 +144,24 @@ The distributions seem pretty similar. We ran a permutations will the following 
 - *Null Hypothesis*: The distribution of `name_length` when `Average Rating` is missing is the same as the distribution of `name_length` when `Average Rating` is not missing.
 - *Alternative Hypothesis*: The distribution of `name_length` when `Average Rating` is missing is higher than the distribution of `name_length` when `Average Rating` is not missing.
 - *Test Statistic*: signed difference in means (avg recipe time missing avg rating - avg recipe time with avg rating)
-- *Observed test statistic*: 0.08 words
+- *Observed test statistic*: 0.16 words
 
 This is the result of the permutation test:
 <center><iframe src="assets/not_mar.html" width=650 height=500 frameBorder=0></iframe></center>
 
-We found that our p-value under the null hypothesis was 0.34, meaning that it was likely that we see our observed test statistic under the null hypothesis. For this reason, we  fail to reject the null hypothesis. We do not have enough evidence that the missingness of the data in “average_rating” is dependent on the “name_length” column.
+We found that our p-value under the null hypothesis was 0.225, meaning that it was likely that we see our observed test statistic under the null hypothesis. For this reason, we  fail to reject the null hypothesis. We do not have enough evidence that the missingness of the data in `Average Rating` is dependent on the `name_length` column.
 
+## Hypothesis Testing
+Here we will answer the question posed at the top of the page, in relation to recipes with sugar. We hypothesized that the presence of sugar would lead to a higher overall calorie count in recipes. To answer our question, we knew we would need to conduct a permutation test because we are trying to determine if the sample with sugar present comes from the same distribution as the sample without sugar. In order to do this, we shuffled the `contains_sugar` column and computed the corresponding test statistic 1000 times. Details of `contains_sugar` can be found in the AGGREGATE ANALYSIS section.
 
+We ran the permutation test with the following hypotheses and parameters:
+- Null Hypothesis: There is no difference in average calories between recipes that contain sugar versus recipes that do not contain sugar.
+- Alternative Hypothesis: The average calories between recipes that contain sugar is higher than recipes that do not contain sugar.
+- Test Statistic: signed difference in means (avg calories with sugar - avg calories without sugar)
+- Observed Test Statistic: 4.81
+- Significance Level: 0.05
+
+These are the results of the permutation test:
+<center><iframe src="assets/final_perm.html" width=650 height=500 frameBorder=0></iframe></center>
+
+We found that our p-value under the null hypothesis was 0.02, meaning that it was unlikely that we would see our observed test statistic under the null hypothesis. For this reason, we could reject the null hypothesis. 
