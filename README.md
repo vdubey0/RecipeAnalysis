@@ -3,9 +3,10 @@ We originally started with two datasets. The first was a dataset containing food
 about many recipes. For example, some columns were: the name of the recipe, when it was
 posted, its nutrition facts, the steps of the recipe, ingredients, etc. The second
 dataset contains a recipe id that matches to an id in first dataset, along with reviews
-for that particular recipe and the rating the person gave that recipe, among other columns.
-In order to get started, we merged these datasets into one big dataset with 234,429
-rows that contained information about each recipe.
+for that particular recipe and the rating the person gave that recipe, among other columns. Basically
+the first dataset contained info about the recipes themselves and the second dataset had the reviews
+and ratings. In order to get started, we merged these datasets into one big dataset with 234,429
+rows that contained information about each recipe. 
 
 Here is a more detailed explanation of the most relevant columns in the merged dataset:
 -   `name` : name of the recipe
@@ -20,6 +21,9 @@ A question that we explored throughout this project was *"What factors influence
 <br>
 <br>
 We explored *"Do recipes with sugar tend to have more calories than recipes without sugar?"*  in the HYPOTHESIS TEST portion.
+<br>
+<br>
+In order to answer these questions, we will use data visualization techniques and statistical analyses, such as permutation tests, to find significant effects in our data.
 
 ---
 
