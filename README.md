@@ -59,12 +59,14 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 
 This is the distribution of the `calorie` column:
 <center><iframe src="assets/calories_hist.html" width=650 height=500 frameBorder=0></iframe></center>
-<font size = '10'> <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
+<font size = '1'> <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
 with less calories than there are with a lot. Having high amounts of calories in a recipe normally
 has a negative connotation in that it is unhealthy. It makes sense for people to only post
 recipes in which the calories are less so others actually want to make the dish and feel reasonably healthy
 in doing so. </em> </center> </font>
 
-
-
+Next, we analyzed dependence of the `calorie` column on the `Average Rating` columns. Since `Average Rating` is
+a categorical variable (more specifically, ordinal), we chose to display the graph with `calorie` seperated
+by each value in `Average Rating`, as below:
+<center><iframe src="assets/calories_by_rating.html" width=650 height=500 frameBorder=0></iframe></center>
 
