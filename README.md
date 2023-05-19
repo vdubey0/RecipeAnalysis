@@ -47,6 +47,8 @@ interesting to us because we wanted to work with recipes that we could encounter
 As for minutes, we set a minute limit of 2880 which is 1.5 days. After this cleaning process, we were left with 82472 
 (around 98.5% of the data from step 2).
 
+<br>
+
 Here is the first 5 rows of our resulting dataframe (note that for visual purposes, the ingredients column is shortened with ellipses):
 
 | name                                  |     id |   minutes |   n_steps | ingredients                                                                                                                            |   n_ingredients |   Average Rating |   calories |
@@ -57,6 +59,8 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 | paula deen s caramel apple cheesecake | 275030 |        45 |        11 | ['apple pie filling',...,'pecans'] |               9 |                5 |      577.7 |
 | midori poached pears                  | 275032 |        25 |         8 | ['midori melon liqueur',...,'mint']        |               9 |                5 |      386.9 |
 
+<br>
+
 This is the distribution of the `calorie` column:
 <center><iframe src="assets/calories_hist.html" width=650 height=500 frameBorder=0></iframe></center>
 <font size = '1'> <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
@@ -64,6 +68,8 @@ with less calories than there are with a lot. Having high amounts of calories in
 has a negative connotation in that it is unhealthy. It makes sense for people to only post
 recipes in which the calories are less so others actually want to make the dish and feel reasonably healthy
 in doing so. </em> </center> </font>
+
+<br>
 
 Next, we analyzed dependence of the `calorie` column on the `Average Rating` columns. Since `Average Rating` is
 a categorical variable (more specifically, ordinal), we chose to display the graph with `calorie` seperated
