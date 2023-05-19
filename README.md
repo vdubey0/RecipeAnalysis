@@ -78,8 +78,11 @@ For the purposes of this visualization, we will treat `Average Rating` as
 a categorical variable (more specifically, ordinal). We binned the ratings and
 displayed the distribution of `calories` by rating, as below (scroll left and right):
 <center><iframe src="assets/calories_by_rating.html" width=650 height=500 frameBorder=0></iframe></center>
-<font size = '2'> <center> <em> How to read: if you hover over the blue plot (rating 1 to 2), on 250-349 calories, you will see 16.55%. This means
-that for recipes that received 1 star, 16 percent of them had 250-349 calories. </em> </center> </font>
+<font size = '2'> <center> <em> How to read: if you hover over the blue plot (rating 1 to 2), on 250-349 calories, you will see 16.47%. This means
+that for recipes that received 1 star, 16% of them had 250-349 calories. Also note that we opted against the use of a lineplot since
+around 75% of the values in Average Rating were 1, 2, 3, 4, or 5. Thus, in a lineplot, most of the datapoints would be clustered around
+those values. </em> </center> </font>
+
 
 For similar reasons as mentioned in the description of the previous graph, all distributions are skewed right.
 Though the peaks of each distribution may be slightly different, there is not a visibily drastic difference
@@ -89,10 +92,26 @@ tend to like these sweeter foods. However, We were still intigued by this the re
 continued to test it in our analysis (as shown later in this page).
 
 #### Aggregate Analysis
+Another way that we found to quantify sweetness was to see if sugar was in the ingredients list of the recipe.
+Though the `ingredients` column looks like a Python list, it is actually stored as a string, so it was pretty
+simple to extract whether or not a recipe had sugar. Any type of sugar was counted like powdered sugar, brown sugar,
+caned sugar, etc. In doing so, we added a new column to our dataset that simply contained boolean values for whether
+or not the recipe contained sugar. We then grouped by this column and aggregated by mean. Here is the resulting dataframe:
+
+| contains_sugar   |   minutes |   n_steps |   n_ingredients |   Average Rating |   calories |
+|:-----------------|----------:|----------:|----------------:|-----------------:|-----------:|
+| False            |   65.5412 |   9.54549 |         8.9805  |          4.63006 |    377.583 |
+| True             |   75.5849 |  11.1645  |         9.69367 |          4.6149  |    382.39  |
+<font size = '2'> <center> <em> Note that the id columns was dropped (even though it is numerical) due its mean being meaningless </em> </center> </font>
+
+Some takeaways:
+- Most of the columns have a greater mean for recipes that contain sugar (more steps, more ingredients, more minutes, on average)
+- It is suprising to see that the average rating is higher for recipes without sugar (but it is fairly close)
+- It does seem like there are more calories in recipes that contain sugar, but it is not evident if this is a significant difference yet
 
 ## Assessment of Missingness
 #### Not Missing At Random (NMAR) Analysis
-We believe that none of the columns present are NMAR. When looking at the dataset, there is only one column present with missing null values to analyze the missingness of, which is "average_rating." There are two ways we can establish that the data is NMAR: collecting more data or reasoning about the data generating process. For the scope of the project, we disregarded collecting more data to determine if the column is NMAR and simply focused on the data generating process for average recipe ratings. Our average rating column is derived from all the ratings for each recipe in the original dataset; this indicates that recipes with a missing average rating had no ratings in the first place. We could argue that the data is NMAR. For example, we could say that people are more likely to cook recipes that are previously rated and then rate the recipe themselves, and establish the data is NMAR. However, we believe that this is not the main reason the data is missing. We believe the missingness of the data is dependent on other confounding factors in the dataset, such as the length of time required for the recipe or the number of steps listed to make the recipe. For that reason, we believe that there are no columns with NMAR missingness; we further explored the missingness below.
+We believe that none of the columns present are NMAR. When looking at our cleaned dataset, there is only one column present with missing null values to analyze the missingness of, which is `average_rating`. There are two ways we can establish that the data is NMAR: collecting more data or reasoning about the data generating process. For the scope of the project, we disregarded collecting more data to determine if the column is NMAR and simply focused on the data generating process for average recipe ratings. Our average rating column is derived from all the ratings for each recipe in the original dataset; this indicates that recipes with a missing average rating had no ratings in the first place. We could argue that the data is NMAR. For example, we could say that people are more likely to cook recipes that are previously rated and then rate the recipe themselves, and establish the data is NMAR. However, we believe that this is not the main reason the data is missing. We believe the missingness of the data is dependent on other confounding factors in the dataset, such as the length of time required for the recipe or the number of steps listed to make the recipe. For that reason, we believe that there are no columns with NMAR missingness; we further explored the missingness below.
 
 #### Other Missingness Dependency Analyses
 
