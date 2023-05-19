@@ -81,14 +81,14 @@ displayed the distribution of `calories` by rating, as below (scroll left and ri
 <font size = '2'> <center> <em> How to read: if you hover over the blue plot (rating 1 to 2), on 250-349 calories, you will see 16.47%. This means
 that for recipes that received 1 star, 16% of them had 250-349 calories. Also note that we opted against the use of a lineplot since
 around 75% of the values in Average Rating were 1, 2, 3, 4, or 5. Thus, in a lineplot, most of the datapoints would be clustered around
-those values. </em> </center> </font>
+those values and the plot would be extremely messy. </em> </center> </font>
 
 
 For similar reasons as mentioned in the description of the previous graph, all distributions are skewed right.
 Though the peaks of each distribution may be slightly different, there is not a visibily drastic difference
 in distributions among each of the ratings. We thought that maybe higher calorie foods would be more common
 in the higher rated categories because higher calories normally means more sugar, more sweetness, etc. And people
-tend to like these sweeter foods. However, We were still intigued by this the relationship between sweetness and calories and
+tend to like these sweeter foods. However, we were still intigued by this the relationship between sweetness and calories and
 continued to test it in our analysis (as shown later in this page).
 
 #### Aggregate Analysis
@@ -102,6 +102,7 @@ or not the recipe contained sugar. We then grouped by this column and aggregated
 |:-----------------|----------:|----------:|----------------:|-----------------:|-----------:|
 | False            |   65.5412 |   9.54549 |         8.9805  |          4.63006 |    377.583 |
 | True             |   75.5849 |  11.1645  |         9.69367 |          4.6149  |    382.39  |
+
 <font size = '2'> <center> <em> Note that the id columns was dropped (even though it is numerical) due its mean being meaningless </em> </center> </font>
 
 Some takeaways:
