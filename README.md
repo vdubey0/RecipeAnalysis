@@ -16,8 +16,7 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 -   `rating` : rating given to the recipe by a user
 -   `id` : recipe ID
 
-A question that we explored throughout this project was *"Do recipes with sugar as
-an ingredient typically have more calories than those without?"*
+A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (ratings, sugar, recipe name, etc)"*
 
 ---
 
@@ -60,11 +59,11 @@ Here is the first 5 rows of our resulting dataframe (note that for visual purpos
 
 This is the distribution of the `calorie` column:
 <center><iframe src="assets/calories_hist.html" width=650 height=500 frameBorder=0></iframe></center>
-<center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
+<font size = '10'> <center> <em> This distribution is evidently skewed right. We can see that there a lot more reciples
 with less calories than there are with a lot. Having high amounts of calories in a recipe normally
 has a negative connotation in that it is unhealthy. It makes sense for people to only post
 recipes in which the calories are less so others actually want to make the dish and feel reasonably healthy
-in doing so. </em> </center>
+in doing so. </em> </center> </font>
 
 
 
