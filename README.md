@@ -1,9 +1,9 @@
 ## Intoduction and Question Identification
-We originally started with two datasets. The first was a dataset containing information 
-about many recipes. For example, some columns were the name of the recipe, when it was
+We originally started with two datasets. The first was a dataset containing food information 
+about many recipes. For example, some columns were: the name of the recipe, when it was
 posted, its nutrition facts, the steps of the recipe, ingredients, etc. The second
-dataset contains a recipe id that matches to the first dataset, along with reviews
-for that particular recipe and the rating the person gave it among other columns.
+dataset contains a recipe id that matches to an id in first dataset, along with reviews
+for that particular recipe and the rating the person gave that recipe, among other columns.
 In order to get started, we merged these datasets into one big dataset with 234,429
 rows that contained information about each recipe.
 
@@ -17,6 +17,7 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 -   `id` : recipe ID
 
 A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (SUGAR, ratings, etc)?"*
+We explored *"Do recipes with sugar tend to have more calories than recipes without sugar?"* in the HYPOTHESIS TEST portion.
 
 ---
 
@@ -25,24 +26,25 @@ A question that we explored throughout this project was *"What factors influence
 As mentioned before, we started by merging the two datasets. These are the next steps we followed:
 1. We filled all the ratings that had a value of 0 with `np.nan`. We did this because the rating
 scale was from 1-5, so a rating of `0` is not possible. Thus, we opted that since 0 can still have
-meaning in terms of a rating (aside from the scale) we should replace it.
+mathematical meaning in terms of a rating, we should replace it.
 2. Since we saw that recipes had ratings/reviews from different users, we decided to
 compute the average rating per recipe. We then added this information to our dataframe so
 that each recipe had an average rating. We also dropped all duplicate recipes in our dataset
-since the only differing information were the reviews given by each user and we would not be 
+since the only differing information between recipes that appeared most than once were the reviews given by each user - we would not be 
 using that info. This left us with 83782 rows.
-3. We then dropped all unnecessary columns. These were `['contributor_id', 'submitted', 'tags', 'steps', 'description', 'user_id', 'recipe_id', 'date', 'review', 'rating_x', 'nutrition']`. We were able to look at these columns and figure out that they would not have
-any significance in our future analyses.
-4. In order to prepare for research question, we extracted the calorie value for each recipe from the 
+3. In order to prepare for research question, we extracted the calorie value for each recipe from the 
 `nutrition` column.
+4. We then dropped all unnecessary columns. These were `['contributor_id', 'submitted', 'tags', 'steps', 'description', 'user_id', 'recipe_id', 'date', 'review', 'rating_x', 'nutrition']`. We were able to look at these columns and figure out that they would not have
+any significance in our future analysis. 
 5. We then noticed that there were pretty large outliers in the `minutes` and `calorie` columns.
 Some recipes had calorie counts that were in the 20,000's and some recipes were taking almost 300
 days. We decided to filter out these recipes because a recipe having that many calories and
 taking that long is unfeasible and is probably due to input errors in the data gathering
-process. We did not want these values to skew our analysis because we will be working with
-means in our statistical analysis and we know that outliers can heavily skew such a measure. We
-figured to set a calorie limit of 2350 (the mean of the 2200 and 2500 calories recommended for
-women and men respectively). We reasoned the daily calorie limit because we thought a day to consist
+process. We did not want these values to skew our analysis because we would be working with
+means in our statistical analysis and outliers can heavily skew such a measure. Even though some values weren't of the
+magnitude mentioned earlier, we wanted to choose the data that had most meaning to us. We
+figured to keep only recipes with a calorie limit of 2350 (the mean of the 2200 and 2500 calories recommended for
+women and men respectively). We reasoned the daily calorie limit because we figured a day of eating to consist
 of 3 meals and a couple snacks so ~4 meals. A recipe that makes more than 4 meals at once was not as
 interesting to us because we wanted to work with recipes that we could encounter in our actual lives.
 As for minutes, we set a minute limit of 2880 which is 1.5 days. After this cleaning process, we were left with 82472 
@@ -116,7 +118,7 @@ Some takeaways:
 We believe that none of the columns present are NMAR. When looking at our cleaned dataset, there is only one column present with missing null values to analyze the missingness of, which is `Average Rating`. There are two ways we can establish that the data is NMAR: collecting more data or reasoning about the data generating process. For the scope of the project, we disregarded collecting more data to determine if the column is NMAR and simply focused on the data generating process for average recipe ratings. Our average rating column is derived from all the ratings for each recipe in the original dataset; this indicates that recipes with a missing average rating had no ratings in the first place. We could argue that the data is NMAR. For example, we could say that people are more likely to cook recipes that are previously rated and then rate the recipe themselves, and establish the data is NMAR. However, we believe that this is not the main reason the data is missing. We believe the missingness of the data is dependent on other confounding factors in the dataset, such as the length of time required for the recipe or the number of steps listed to make the recipe. For that reason, we believe that there are no columns with NMAR missingness; we further explored the missingness below.
 
 #### Other Missingness Dependency Analyses
-We hypothesized that the missingness in `Average Rating` was related to the `calories` column. We wanted to show that the average ratings were missing at random, or MAR, based on the calories in the recipe. Specifically, we hypothesized that recipes with higher calories would result in it being more likely that the rating was missing. We constructed `missing_rating` column from our dataset which listed `True` for the recipes that were missing their rating and `False` if it did have a rating. Below is the distribution of `calories` based on the missingness of `Average Rating`.
+We hypothesized that the missingness in `Average Rating` was related to the `calories` column. We wanted to show that the average ratings were missing at random, or MAR, based on the calories in the recipe. Specifically, we hypothesized that recipes with higher calories would result in it being more likely that the rating was missing. We constructed `missing_rating` column from our dataset which listed `True` for the recipes that were missing their rating and `False` if it did have a rating. Below is the distribution of `calories` based on the missingness of `Average Rating`:
 
 <center><iframe src="assets/cal_ar_missing.html" width=650 height=500 frameBorder=0></iframe></center>
 
@@ -155,13 +157,13 @@ We found that our p-value under the null hypothesis was 0.225, meaning that it w
 Here we will answer the question posed at the top of the page, in relation to recipes with sugar. We hypothesized that the presence of sugar would lead to a higher overall calorie count in recipes. To answer our question, we knew we would need to conduct a permutation test because we are trying to determine if the sample with sugar present comes from the same distribution as the sample without sugar. In order to do this, we shuffled the `contains_sugar` column and computed the corresponding test statistic 1000 times. Details of `contains_sugar` can be found in the AGGREGATE ANALYSIS section.
 
 We ran the permutation test with the following hypotheses and parameters:
-- Null Hypothesis: There is no difference in average calories between recipes that contain sugar versus recipes that do not contain sugar.
-- Alternative Hypothesis: The average calories between recipes that contain sugar is higher than recipes that do not contain sugar.
-- Test Statistic: signed difference in means (avg calories with sugar - avg calories without sugar)
-- Observed Test Statistic: 4.81
-- Significance Level: 0.05
+- *Null Hypothesis*: There is no difference in average calories between recipes that contain sugar versus recipes that do not contain sugar.
+- *Alternative Hypothesis*: The average calories between recipes that contain sugar is higher than recipes that do not contain sugar.
+- *Test Statistic*: signed difference in means (avg calories with sugar - avg calories without sugar)
+- *Observed Test Statistic*: 4.81 calories
+- *Significance Level*: 0.05
 
 These are the results of the permutation test:
 <center><iframe src="assets/final_perm.html" width=650 height=500 frameBorder=0></iframe></center>
 
-We found that our p-value under the null hypothesis was 0.02, meaning that it was unlikely that we would see our observed test statistic under the null hypothesis. For this reason, we could reject the null hypothesis. 
+We found that our p-value under the null hypothesis was 0.02, meaning that it was unlikely that we would see our observed test statistic under the null hypothesis. For this reason, we could reject the null hypothesis. Because there could be other confounding factors, we cannot fully conclude that sugar is the reason why recipes have a higher calorie count; however, this test does give us some evidence toward that conclusion.
