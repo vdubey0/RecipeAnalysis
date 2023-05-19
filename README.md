@@ -18,6 +18,7 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 
 A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (SUGAR, ratings, etc)?"* 
 <br>
+<br>
 We explored *"Do recipes with sugar tend to have more calories than recipes without sugar?"*  in the HYPOTHESIS TEST portion.
 
 ---
