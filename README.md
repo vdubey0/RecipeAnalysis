@@ -120,14 +120,19 @@ We hypothesized that the missingness in `Average Rating` was related to the `cal
 <center><iframe src="assets/cal_ar_missing.html" width=650 height=500 frameBorder=0></iframe></center>
 
 We can see some slight differences in the distributions. We can see that for many bins after the peak of the graphs, the `True` distribution is greater than the `False`. This would increase the mean of the `True` distribution. To quantify the significance of any possible difference, we ran a permutation test with the following hypotheses:
-Null Hypothesis: The distribution of `calories` when “average_rating” is missing is the same as the distribution of `calories` when “average_rating” is not missing.
-Alternative Hypothesis: The distribution of `calories` when “average_rating” is missing is higher than the distribution of `calories` when “average_rating” is not missing.
-
-And Test Statistic: signed difference in means (avg calories missing avg rating - avg calories with avg rating)
+<br>
+Null Hypothesis: The distribution of `calories` when `Average Rating` is missing is the same as the distribution of `calories` when `Average Rating`is not missing. <br>
+Alternative Hypothesis: The distribution of `calories` when `Average Rating` is missing is higher than the distribution of `calories` when `Average Rating` is not missing.
+<br>
+Test Statistic: signed difference in means (avg calories missing avg rating - avg calories with avg rating)
+<br>
 Observed test statistic: 37.75 calories
+<br>
 
 This is the result of our permutation test:
 
 <center><iframe src="assets/mar.html" width=650 height=500 frameBorder=0></iframe></center>
+
+As evident from above,our p-value under the null hypothesis was 0, meaning that it was highly unlikely that we see our observed test statistic under the null hypothesis. For this reason, we can reject the null hypothesis and conclude that the missingness of the data in `Average Rating` is has dependency on the `calories` column.
 
 
