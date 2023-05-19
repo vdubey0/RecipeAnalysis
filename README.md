@@ -129,10 +129,31 @@ Test Statistic: signed difference in means (avg calories missing avg rating - av
 Observed test statistic: 37.75 calories
 <br>
 
-This is the result of our permutation test:
+This is the result of our permutation test where the red line is the observed test statistic:
 
 <center><iframe src="assets/mar.html" width=650 height=500 frameBorder=0></iframe></center>
 
 As evident from above,our p-value under the null hypothesis was 0, meaning that it was highly unlikely that we see our observed test statistic under the null hypothesis. For this reason, we can reject the null hypothesis and conclude that the missingness of the data in `Average Rating` is has dependency on the `calories` column.
+
+<br>
+
+We also explored whether the missingness of `Average Rating` was related to the length of the recipe name. We already have our “missing_rating” column from the previous permutation test, but we needed to create a column with the length of each recipe name. We added a new column with the length of recipe names, `name_length` and plotted two distributions (name length with average ratings and name length with missing average ratings). There were no outliers that we needed to account for. elow is the distribution of `name_length` based on the missingness of `Average Rating`:
+
+<center><iframe src="assets/length.html" width=650 height=500 frameBorder=0></iframe></center>
+
+<br>
+Null Hypothesis: The distribution of `name_length` when `Average Rating` is missing is the same as the distribution of `name_length` when `Average Rating` is not missing.
+<br>
+Alternative Hypothesis: The distribution of `name_length` when `Average Rating` is missing is higher than the distribution of `name_length` when `Average Rating` is not missing.
+<br>
+Test Statistic: signed difference in means (avg recipe time missing avg rating - avg recipe time with avg rating)
+<br>
+Observed test statistic: 0.08 words
+<br>
+
+This is the result of the permutation test:
+<center><iframe src="assets/not_mar.html" width=650 height=500 frameBorder=0></iframe></center>
+
+We found that our p-value under the null hypothesis was 0.34, meaning that it was likely that we see our observed test statistic under the null hypothesis. For this reason, we  fail to reject the null hypothesis. We do not have enough evidence that the missingness of the data in “average_rating” is dependent on the “name_length” column.
 
 
