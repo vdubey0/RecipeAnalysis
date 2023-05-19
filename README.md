@@ -16,7 +16,7 @@ Here is a more detailed explanation of the most relevant columns in the merged d
 -   `rating` : rating given to the recipe by a user
 -   `id` : recipe ID
 
-A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (ratings, sugar, recipe name, etc)"*
+A question that we explored throughout this project was *"What factors influence the amount of calories in a recipe (ratings, sweetness, ingredients, etc)"*
 
 ---
 
@@ -102,9 +102,9 @@ or not the recipe contained sugar. We then grouped by this column and aggregated
 |:-----------------|----------:|----------:|----------------:|-----------------:|-----------:|
 | False            |   65.5412 |   9.54549 |         8.9805  |          4.63006 |    377.583 |
 | True             |   75.5849 |  11.1645  |         9.69367 |          4.6149  |    382.39  |
-
 <font size = '2'> <center> <em> Note that the id columns was dropped (even though it is numerical) due its mean being meaningless </em> </center> </font>
 
+<br>
 Some takeaways:
 - Most of the columns have a greater mean for recipes that contain sugar (more steps, more ingredients, more minutes, on average)
 - It is suprising to see that the average rating is higher for recipes without sugar (but it is fairly close)
@@ -112,7 +112,22 @@ Some takeaways:
 
 ## Assessment of Missingness
 #### Not Missing At Random (NMAR) Analysis
-We believe that none of the columns present are NMAR. When looking at our cleaned dataset, there is only one column present with missing null values to analyze the missingness of, which is `average_rating`. There are two ways we can establish that the data is NMAR: collecting more data or reasoning about the data generating process. For the scope of the project, we disregarded collecting more data to determine if the column is NMAR and simply focused on the data generating process for average recipe ratings. Our average rating column is derived from all the ratings for each recipe in the original dataset; this indicates that recipes with a missing average rating had no ratings in the first place. We could argue that the data is NMAR. For example, we could say that people are more likely to cook recipes that are previously rated and then rate the recipe themselves, and establish the data is NMAR. However, we believe that this is not the main reason the data is missing. We believe the missingness of the data is dependent on other confounding factors in the dataset, such as the length of time required for the recipe or the number of steps listed to make the recipe. For that reason, we believe that there are no columns with NMAR missingness; we further explored the missingness below.
+We believe that none of the columns present are NMAR. When looking at our cleaned dataset, there is only one column present with missing null values to analyze the missingness of, which is `Average Rating`. There are two ways we can establish that the data is NMAR: collecting more data or reasoning about the data generating process. For the scope of the project, we disregarded collecting more data to determine if the column is NMAR and simply focused on the data generating process for average recipe ratings. Our average rating column is derived from all the ratings for each recipe in the original dataset; this indicates that recipes with a missing average rating had no ratings in the first place. We could argue that the data is NMAR. For example, we could say that people are more likely to cook recipes that are previously rated and then rate the recipe themselves, and establish the data is NMAR. However, we believe that this is not the main reason the data is missing. We believe the missingness of the data is dependent on other confounding factors in the dataset, such as the length of time required for the recipe or the number of steps listed to make the recipe. For that reason, we believe that there are no columns with NMAR missingness; we further explored the missingness below.
 
 #### Other Missingness Dependency Analyses
+We hypothesized that the missingness in `Average Rating` was related to the `calories` column. We wanted to show that the average ratings were missing at random, or MAR, based on the calories in the recipe. Specifically, we hypothesized that recipes with higher calories would result in it being more likely that the rating was missing. We constructed `missing_rating` column from our dataset which listed `True` for the recipes that were missing their rating and `False` if it did have a rating. Below is the distribution of `calories` based on the missingness of `Average Rating`.
+
+<center><iframe src="assets/cal_ar_missing.html" width=650 height=500 frameBorder=0></iframe></center>
+
+We can see some slight differences in the distributions. We can see that for many bins after the peak of the graphs, the `True` distribution is greater than the `False`. This would increase the mean of the `True` distribution. To quantify the significance of any possible difference, we ran a permutation test with the following hypotheses:
+Null Hypothesis: The distribution of `calories` when “average_rating” is missing is the same as the distribution of `calories` when “average_rating” is not missing.
+Alternative Hypothesis: The distribution of `calories` when “average_rating” is missing is higher than the distribution of `calories` when “average_rating” is not missing.
+
+And Test Statistic: signed difference in means (avg calories missing avg rating - avg calories with avg rating)
+Observed test statistic: 37.75 calories
+
+This is the result of our permutation test:
+
+<center><iframe src="assets/mar.html" width=650 height=500 frameBorder=0></iframe></center>
+
 
